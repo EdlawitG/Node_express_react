@@ -29,20 +29,32 @@ function Add() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (
       !values.title ||
       !values.description ||
       !values.date ||
       !values.place ||
-      !values.price ||
-      !values.image
+      !values.price 
     ) {
       alert("Please provide value into each input field");
     } else {
       createTicket(values);
       navigate("/");
     }
+
   };
+
+  const [images,setImages]=useState({
+    file:[],
+  })
+  const handleImage =(e)=>{
+    setImages({
+      ...images,
+      file:e.target.files[0],
+    })
+  }
+
   return (
     <>
       <Grid
@@ -110,9 +122,7 @@ function Add() {
             <TextField
               type="file"
               variant="outlined"
-              onChange={(e) =>
-                setValues({ ...values, image: e.target.files[0] })
-              }
+              onChange={handleImage}
             />
             <Button type="submit" variant="contained">
               Submit
@@ -122,6 +132,7 @@ function Add() {
       </Grid>
     </>
   );
+ 
 }
 
 export default Add;

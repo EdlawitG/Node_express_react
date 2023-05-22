@@ -11,9 +11,7 @@ import {
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 function Update() {
-  const [values, setValues] = useState([
-    { title: "", price: "", description: "", place: "", image: "", date: "" },
-  ]);
+  const [values, setValues] = useState([{}]);
   const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
@@ -23,7 +21,6 @@ function Update() {
     const response = await axios.get(`http://localhost:4000/ticket/${id}`);
     if (response.status === 200) {
       setValues({ ...response.data });
-      // console.log(response.data);
     }
   };
   const updateTicket = async (data, id) => {
@@ -68,18 +65,21 @@ function Update() {
             <TextField
               variant="outlined"
               type="text"
+              name="title"
               onChange={handleChange}
               value={values.title}
             />
             <FormLabel>Description:</FormLabel>
             <TextareaAutosize
               minRows={4}
+              name="description"
               value={values.description}
               onChange={handleChange}
             ></TextareaAutosize>
             <FormLabel>Price:</FormLabel>
             <TextField
               type="number"
+              name="price"
               value={values.price}
               inputProps={{ min: 1 }}
               variant="outlined"
@@ -89,6 +89,7 @@ function Update() {
             <TextField
               variant="outlined"
               type="date"
+              name="date"
               value={values.date}
               onChange={handleChange}
             />
@@ -96,6 +97,7 @@ function Update() {
             <TextField
               type="text"
               variant="outlined"
+              name="place"
               value={values.place}
               onChange={handleChange}
             />
@@ -103,6 +105,7 @@ function Update() {
             <TextField
               type="file"
               variant="outlined"
+              name="image"
 
               // onChange={ handleChange}
 
