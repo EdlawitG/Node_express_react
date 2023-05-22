@@ -1,6 +1,18 @@
 import { v4 as uuid } from "uuid";
 
-let tickets = [];
+let tickets = [
+  {
+    id: uuid(),
+    title: "Summer Concert",
+    description:
+      "Are you ready to experience the concert of a lifetime? Get ready to be blown away by the incredible music, dazzling lights, and unforgettable atmosphere that only a live concert can offer.",
+    date: "2020-12-03",
+    price: "25",
+    place: "Hillbottom",
+    image:
+      "https://img.freepik.com/free-vector/live-concert-ticket_53876-67419.jpg?size=626&ext=jpg&ga=GA1.2.1624204321.1680518598&semt=ais",
+  },
+];
 
 export const getTickets = (req, res) => res.send(tickets);
 

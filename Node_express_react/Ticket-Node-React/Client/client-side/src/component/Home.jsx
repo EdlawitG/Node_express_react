@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import AddIcon from "@mui/icons-material/Add";
-//import { AiFillEye} from 'react-icons/ai'
+import { AiFillEye} from 'react-icons/ai'
 import axios from "axios";
 import { Button, Grid, Stack } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
@@ -18,7 +18,7 @@ function Home() {
   }, []);
 
   const getTickets = async () => {
-    const response = await axios.get("/tickets");
+    const response = await axios.get("http://localhost:4000/tickets");
     if (response.status === 200) {
       setData(response.data);
     }
@@ -115,11 +115,11 @@ const handleDelete = async (id)=>{
                           Edit
                         </Button>
                       </Link>
-                      {/* <Link to={`/view/${dat.id}`} className="link-new">
+                      <Link to={`/view/${dat.id}`} className="link-new">
                         <Button variant="contained" color="secondary" startIcon={<AiFillEye />}>
                           View
                         </Button>
-                      </Link> */}
+                      </Link>
                       <Button
                         variant="outlined"
                         startIcon={<DeleteIcon />}

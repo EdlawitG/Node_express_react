@@ -22,7 +22,7 @@ function Add() {
   });
   const navigate = useNavigate();
   const createTicket = async () => {
-    const response = await axios.post("/ticket", values);
+    const response = await axios.post("http://localhost:4000/ticket", values);
     if (response.status === 200) {
       alert("added succesfully");
     }

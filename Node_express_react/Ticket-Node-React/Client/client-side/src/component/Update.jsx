@@ -11,22 +11,24 @@ import {
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 function Update() {
-  const [values, setValues] = useState([{}]);
-  //const { title, description, date, place, price } = values;
+  const [values, setValues] = useState([
+    { title: "", price: "", description: "", place: "", image: "", date: "" },
+  ]);
   const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
     getTicket(id);
-  },[id]);
+  }, [id]);
   const getTicket = async (id) => {
-    const response = await axios.get(`/ticket/${id}`);
+    const response = await axios.get(`http://localhost:4000/ticket/${id}`);
     if (response.status === 200) {
-      setValues({ ...response.data[0]});
-      console.log(values);
+      setValues({ ...response.data });
+      // console.log(response.data);
     }
   };
   const updateTicket = async (data, id) => {
     const response = await axios.put(`/ticket/${id}`, data);
+    console.log(data)
     if (response.status === 200) {
       alert("Updated Succesfully");
       navigate("/");
@@ -36,6 +38,7 @@ function Update() {
   const handleChange = (e) => {
     let { name, value } = e.target;
     setValues({ ...values, [name]: value });
+    console.log(values);
   };
 
   const handleSubmit = (e) => {
@@ -65,8 +68,8 @@ function Update() {
             <TextField
               variant="outlined"
               type="text"
-              value={values.title}
               onChange={handleChange}
+              value={values.title}
             />
             <FormLabel>Description:</FormLabel>
             <TextareaAutosize
@@ -100,7 +103,7 @@ function Update() {
             <TextField
               type="file"
               variant="outlined"
-              value={values.image}
+
               // onChange={ handleChange}
 
               //     (event) => {
