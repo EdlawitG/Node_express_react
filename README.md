@@ -1,1 +1,1 @@
-# MERN project for Ticket mgt system and
+# MERN project for Ticket managment system and Contact managment system
